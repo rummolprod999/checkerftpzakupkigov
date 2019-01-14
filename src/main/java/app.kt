@@ -4,6 +4,11 @@ lateinit var passftp: String
 
 fun main(args: Array<String>) {
     init(args)
+    try {
+        checker()
+    } catch (e: Exception) {
+        println(e)
+    }
 }
 
 fun init(args: Array<String>) {
