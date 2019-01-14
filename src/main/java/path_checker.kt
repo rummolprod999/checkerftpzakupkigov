@@ -13,6 +13,10 @@ fun checker() {
 }
 
 fun getList(path: String) {
-    val result = getListFtp(path)
-    result.forEach { println(it) }
+    val result = getListFtp(path).filter { it != "out" }
+    if (result.isEmpty()) {
+        println("ok")
+        return
+    }
+    result.forEach { println("$path$it") }
 }
