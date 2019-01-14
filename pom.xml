@@ -57,7 +57,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>alexbordovit.AppKt</mainClass>
+                                    <mainClass>AppKt</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
