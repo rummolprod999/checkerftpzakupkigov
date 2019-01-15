@@ -1,4 +1,3 @@
-import org.apache.commons.net.ftp.FTPClient
 import java.io.IOException
 import java.lang.Thread.sleep
 import java.util.*
@@ -6,10 +5,7 @@ import java.util.*
 
 @Throws(IOException::class)
 private fun ftpLst(pathParse: String): ArrayList<String> {
-    val ftpClient = FTPClient()
-    ftpClient.connect("ftp.zakupki.gov.ru", 21)
-    ftpClient.login(userftp, passftp)
-    ftpClient.enterLocalPassiveMode()
+    val ftpClient = FtpClient.getConnect()
     ftpClient.changeWorkingDirectory(pathParse)
     val s = ArrayList(Arrays.asList(*ftpClient.listNames()))
     ftpClient.abort()
@@ -17,6 +13,7 @@ private fun ftpLst(pathParse: String): ArrayList<String> {
 }
 
 fun getListFtp(pathParse: String): ArrayList<String> {
+    var timesleep = 5000L
     var arr = ArrayList<String>()
     var count = 1
     while (true) {
@@ -29,9 +26,11 @@ fun getListFtp(pathParse: String): ArrayList<String> {
                 println("Не смогли найти директорию после попытки $count, $pathParse, ${e.message}")
                 break
             }
+            FtpClient.createConnect()
             count++
+            timesleep += 5000
             try {
-                sleep(5000)
+                sleep(timesleep)
             } catch (ignored: InterruptedException) {
 
             }
