@@ -1,3 +1,5 @@
+val list_arr = mutableListOf<String>()
+
 fun checker() {
     val reg = getRegions()
     reg.forEach {
@@ -13,10 +15,14 @@ fun checker() {
 }
 
 fun getList(path: String) {
+    list_arr.clear()
     val result = getListFtp(path).filter { it != "out" }
     if (result.isEmpty()) {
         println("ok")
         return
     }
-    result.forEach { println("$path$it") }
+    result.forEach {
+        println("$path$it")
+        list_arr.add(it)
+    }
 }

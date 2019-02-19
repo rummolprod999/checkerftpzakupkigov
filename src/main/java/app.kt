@@ -6,6 +6,7 @@ fun main(args: Array<String>) {
     init(args)
     try {
         checker()
+        sendEmail()
     } catch (e: Exception) {
         println(e)
     }
