@@ -1,8 +1,15 @@
+import java.util.logging.FileHandler
+import java.util.logging.Logger
+import java.util.logging.SimpleFormatter
+
 lateinit var arg: arguments
 lateinit var userftp: String
 lateinit var passftp: String
+val logger: Logger = Logger.getLogger("LogToFile")
 
 fun main(args: Array<String>) {
+    initLogger()
+    logger.info("Start program")
     init(args)
     try {
         checker()
@@ -10,6 +17,14 @@ fun main(args: Array<String>) {
     } catch (e: Exception) {
         println(e)
     }
+    logger.info("End program")
+}
+
+fun initLogger() {
+    val handler = FileHandler("message_check_ftp.log", true)
+    handler.formatter = SimpleFormatter()
+    logger.addHandler(handler)
+    logger
 }
 
 fun init(args: Array<String>) {

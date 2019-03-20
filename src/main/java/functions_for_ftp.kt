@@ -44,7 +44,7 @@ fun getListFtp(pathParse: String): ArrayList<String> {
 
 fun sendEmail() {
     if (!list_arr.isEmpty()) {
-        val sender = Sender("************", "**********")
+        val sender = Sender("info@enter-it.ru", "Dft56Point")
         val subj = "Появились новые типы тендеров"
         val text = list_arr.joinToString()
         sender.send(subj, text, "info@enter-it.ru", "rummolprod999@gmail.com")
